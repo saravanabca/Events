@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2024 at 03:15 PM
+-- Generation Time: Nov 13, 2024 at 08:36 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `product`
+-- Database: `event`
 --
 
 -- --------------------------------------------------------
@@ -35,17 +35,25 @@ CREATE TABLE `cart` (
   `price` decimal(10,2) NOT NULL,
   `image` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `cart`
+-- Table structure for table `events`
 --
 
-INSERT INTO `cart` (`id`, `product_id`, `name`, `description`, `price`, `image`, `quantity`, `created_at`, `updated_at`) VALUES
-(24, 11, 'Shoes', 'fdgf', '121323.00', 'uploads/product/1726722795_Rectangle_69.png', 1, '2024-09-19 12:41:25', '2024-09-19 12:41:25'),
-(26, 16, 'shoes men', 'A shoe is an item of footwear intended to protect and comfort the human foot. Though the human foot can adapt to varied terrains and climate conditions, it is vulnerable, and shoes provide protection. Form was originally tied to function, but over time, shoes also became fashion items.', '1000.00', 'uploads/product/1726750958_AdobeStock_293509771_3.png', 1, '2024-09-19 13:04:39', '2024-09-19 13:04:39');
+CREATE TABLE `events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `event_descrption` varchar(255) NOT NULL,
+  `event_date` datetime NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -86,7 +94,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_08_19_000000_create_failed_jobs_table', 1),
 (5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2024_09_18_161220_create_products_table', 1),
-(7, '2024_09_19_071237_create_cart_table', 2);
+(7, '2024_09_19_071237_create_cart_table', 1),
+(8, '2024_11_13_053047_create_events_table', 1);
 
 -- --------------------------------------------------------
 
@@ -147,18 +156,6 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `created_at`, `updated_at`) VALUES
-(11, 'Shoes', 'fdgf', '121323.00', 'uploads/product/1726722795_Rectangle_69.png', '2024-09-18 23:43:15', '2024-09-19 06:48:37'),
-(12, 'Bag', 'testt', '2000.00', 'uploads/product/1726728049_AdobeStock_660559898_1.png', '2024-09-19 01:10:49', '2024-09-19 06:48:12'),
-(13, 'Watch', 'galaxy', '15000.00', 'uploads/product/1726741456_1.jpg', '2024-09-19 04:54:16', '2024-09-19 06:34:52'),
-(15, 'mobile', 'mobilee  daatta', '2000.00', 'uploads/product/1726750626_-original-imagzhspjy5g8nh3.jpeg', '2024-09-19 07:27:06', '2024-09-19 07:27:06'),
-(16, 'shoes men', 'A shoe is an item of footwear intended to protect and comfort the human foot. Though the human foot can adapt to varied terrains and climate conditions, it is vulnerable, and shoes provide protection. Form was originally tied to function, but over time, shoes also became fashion items.', '1000.00', 'uploads/product/1726750958_AdobeStock_293509771_3.png', '2024-09-19 07:32:38', '2024-09-19 07:33:20'),
-(17, 'shoes', 'testt', '300.00', 'uploads/product/1726751032_Rectangle_68.png', '2024-09-19 07:33:52', '2024-09-19 07:33:52');
-
 -- --------------------------------------------------------
 
 --
@@ -167,18 +164,14 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `created_
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'admin@gmail.com', 'admin@123', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -188,6 +181,12 @@ INSERT INTO `users` (`id`, `email`, `password`, `created_at`, `updated_at`) VALU
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -244,7 +243,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -256,7 +261,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -268,13 +273,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
