@@ -1,0 +1,251 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.main-div {
+    margin-left: 20%;
+    margin-top: 5rem;
+    padding: 0px 20px;
+}
+
+.sidenav {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 15px 10px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+.sidenav a:hover {
+    background-color: #495057;
+}
+
+.main {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+.topnav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.topnav .navbar-brand {
+    color: rgb(0, 0, 0);
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.error-message {
+    color: red;
+    text-align: left;
+    position: absolute;
+    font-size: 14px;
+}
+
+.danger-border {
+    border: 1px solid red !important;
+}
+
+.success-border {
+    border: 1px solid green !important;
+
+}
+
+/* event */
+
+.page_heading {
+    /* color: blue; */
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.create_btn {
+    background: green;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 0 10px 0px 25px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.edit-btn,.save_event_details {
+    background: green;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.delete-btn,.cancel_btn {
+    background: rgba(168, 3, 3, 0.986);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+
+
+.event_add_title {
+    text-align: center;
+    padding: 20px;
+    background-color: #4285F4;
+    color: white;
+    border-radius: 2rem 2rem 0rem 0rem !important;
+    font-size: 20px;
+    border: none;
+}
+
+#add_event .modal-header {
+    border-bottom: none;
+    padding: 0px !important;
+}
+
+#add_event .modal-content {
+    border-radius: 4rem 4rem 3rem 3rem !important;
+}
+
+@media (min-width: 576px) {
+    .event-dialog {
+        max-width: 800px !important;
+    }
+}
+
+.event_add_main {
+    padding: 0px 30px 10px 30px;
+
+}
+
+#event_add_form input {
+    box-shadow: none !important;
+    height: 45px !important;
+    font-family: "Barlow", sans-serif;
+    color: black;
+    font-weight: 400;
+}
+
+#event_add_form label {
+    font-size: 15px !important;
+    top: -4px !important;
+}
+
+/* toast */
+@keyframes slideInDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.alert_toast {
+    position: fixed;
+    top: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 375px;
+    background: #FFF;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+    border-left: 3px solid rgb(1, 182, 31);
+    overflow: hidden;
+    z-index: 9999;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.alert_toast.activee {
+    display: flex;
+    /* Ensures display is flex to apply animation */
+    animation: slideInDown 0.3s forwards;
+}
+
+.alert_toast.inactive {
+    animation: slideOutUp 0.5s forwards;
+}
+
+.alert_toast i:first-child {
+    color: red;
+    font-size: 20px;
+}
+
+.toast-text {
+    margin: 0;
+    font-size: 14px;
+    /* text-transform: uppercase; */
+}
+
+.alert_toast i:last-child {
+    color: #ccc;
+    cursor: pointer;
+    transition: 350ms;
+}
+
+.alert_toast i:last-child:hover {
+    color: #333;
+}
+
+.container-toast {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.view_image {
+    width: 50% !important;
+}
+.navbar-dark .navbar-brand:hover{
+    color: black !important;
+}
+
+#previewImage {
+    width: 20%;
+}
+
+.table>:not(:last-child)>:last-child>* {
+    border-bottom-color: #dee2e6 !important;
+}
